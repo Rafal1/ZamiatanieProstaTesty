@@ -36,7 +36,7 @@ public class Debug {
 
         try {
             Scanner sc = new Scanner(f);
-            while (sc.hasNext()) {
+            while (sc.hasNextDouble()) {
                 Double[] vals = new Double[4];
                 for (int i = 0; i < vals.length; i++) {
                     vals[i] = sc.nextDouble();
