@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Locale;
 import java.util.Scanner;
 
 import algs.model.ILineSegment;
@@ -11,6 +12,7 @@ import algs.model.IPoint;
 import algs.model.problems.segmentIntersection.AugmentedNode;
 import algs.model.problems.segmentIntersection.LineState;
 import algs.model.problems.segmentIntersection.LineSweep;
+//import algs.model.problems.segmentIntersection.linkedlist.LineSweep;
 import algs.model.twod.TwoDLineSegment;
 import algs.model.twod.TwoDPoint;
 
@@ -35,7 +37,7 @@ public class Debug {
         ArrayList<ILineSegment> als = new ArrayList<ILineSegment>();
 
         try {
-            Scanner sc = new Scanner(f);
+            Scanner sc = new Scanner(f).useLocale(Locale.US);;
             while (sc.hasNextDouble()) {
                 Double[] vals = new Double[4];
                 for (int i = 0; i < vals.length; i++) {
