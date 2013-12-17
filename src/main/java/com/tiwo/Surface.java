@@ -41,6 +41,18 @@ public class Surface extends JPanel {
         }
     }
     
+    private void drawPoints(Graphics2D g2d){
+        for(IPoint point : res.keySet()){
+            g2d.setColor(Color.red);
+            transformAndDrawPoint(g2d,point);
+            g2d.setColor(Color.green);
+            for(ILineSegment segment : res.get(point)){
+                transformAndDrawPoint(g2d, segment.getStart());
+                transformAndDrawPoint(g2d, segment.getEnd());
+            }
+        }
+    }
+    
     private void transformAndDrawLine(Graphics g2d, ILineSegment segment){
         ILineSegment line = transformer.transformNoDistoriton(segment, 
                 getHeight(), getWidth());
@@ -65,6 +77,28 @@ public class Surface extends JPanel {
                 Integer.MAX_VALUE));
     }
     
+    private void drawPoint(Graphics g2d, IPoint point){
+        int d = 4;
+        int h = getHeight();
+        int x = (int)point.getX() - d/2;
+        int y = h - ((int)point.getY() + d/2);
+        g2d.fillOval(x, y, d, d);
+        drawPointLabel(g2d,point);
+    }
+    
+    private void drawPointLabel(Graphics g2d, IPoint point){
+        int h = getHeight();
+        String coordinates = "("+point.getX()+","+point.getY()+")";
+        g2d.drawChars(coordinates.toCharArray(), 0, coordinates.length(),
+                (int)point.getX(), h-(int)point.getY());
+    }
+    
+    private void transformAndDrawPoint(Graphics g2d, IPoint point){
+        IPoint p = transformer.transformNoDistortion(point, 
+                getHeight(), getWidth() );
+        drawPoint(g2d, p);
+    }
+    
     @Override
     protected void paintComponent(Graphics g){
         // TODO find good place to call that
@@ -76,6 +110,7 @@ public class Surface extends JPanel {
         this.drawAxises(g2d);
         g2d.setColor(Color.blue);
         this.drawLines(g2d);
+        this.drawPoints(g2d);
     }
     
 }
