@@ -2,9 +2,11 @@ package com.tiwo;
 
 import algs.model.ILineSegment;
 import algs.model.IPoint;
+import algs.model.list.List;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import javax.swing.*;
 
@@ -23,7 +25,13 @@ public class Window{
     }
     
     public Window(){
-        
+
+    }
+    
+    public void setDispalyedAlgorithms(ArrayList<String> algs){
+        this.algChooser.removeAllItems();
+        for( String alg : algs)
+            algChooser.addItem(alg);
     }
     
     public void createAndShow(){
@@ -76,9 +84,6 @@ public class Window{
     
     private void initFileChooser(){
         this.fileChooser = new JFileChooser();
-    }
-    
-    public static void main(String[] args){
     }
     
 }
