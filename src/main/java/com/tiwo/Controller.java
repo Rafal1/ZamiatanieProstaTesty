@@ -17,17 +17,11 @@ public class Controller implements ActionListener {
         private Window view;
         private Model model;
         
-    public void createWindow(){        
-        javax.swing.SwingUtilities.invokeLater(new Runnable(){
-            public void run(){
-                view = new Window();
-                view.createAndShow();
-            }
-        });
-    }
-    
-    public void createModel(){
+    public Controller(){
         model = new Model();
+        view = new Window();
+        view.createAndShow();
+        view.setDispalyedAlgorithms(model.getAlgoritmsNames());
     }
     
     public void actionPerformed(ActionEvent e){

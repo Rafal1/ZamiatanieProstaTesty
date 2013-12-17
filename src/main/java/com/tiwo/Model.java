@@ -38,7 +38,7 @@ public class Model {
     public boolean readFromFile(File f){
         ArrayList<ILineSegment> segs = new ArrayList<ILineSegment>();
         try {
-            Scanner sc = new Scanner(f).useLocale(Locale.US);;
+            Scanner sc = new Scanner(f).useLocale(Locale.US);
             while (sc.hasNextDouble()) {
                 Double[] vals = new Double[4];
                 for (int i = 0; i < vals.length; i++) {
@@ -56,8 +56,8 @@ public class Model {
         return true;
     }
     
-    public String[] getAlgoritmsNames(){
-        return (String[])algs.getAlgorithmsNames();
+    public ArrayList<String> getAlgoritmsNames(){
+        return algs.getAlgorithmsNames();
     }
     
     public void setAlgorithm(String name){
