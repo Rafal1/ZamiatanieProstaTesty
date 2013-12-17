@@ -14,9 +14,23 @@ import java.awt.event.ActionListener;
  * @author marcin
  */
 public class Controller implements ActionListener {
+        private Window view;
+        private Model model;
+        
+    public void createWindow(){        
+        javax.swing.SwingUtilities.invokeLater(new Runnable(){
+            public void run(){
+                view = new Window();
+                view.createAndShow();
+            }
+        });
+    }
+    
+    public void createModel(){
+        model = new Model();
+    }
     
     public void actionPerformed(ActionEvent e){
-        // TODO Implement logic here
     }
     
     

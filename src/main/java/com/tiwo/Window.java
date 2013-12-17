@@ -1,8 +1,11 @@
 package com.tiwo;
 
+import algs.model.ILineSegment;
+import algs.model.IPoint;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.Hashtable;
 import javax.swing.*;
 
 
@@ -13,6 +16,15 @@ public class Window{
     private JButton calculateButton;
     private JButton chooseFileButton;
     private Surface surface;
+    
+    public void plot(Hashtable<IPoint, ILineSegment[]> res){
+        surface.res = res;
+        surface.repaint();
+    }
+    
+    public Window(){
+        
+    }
     
     public void createAndShow(){
         initButtons();
@@ -67,11 +79,6 @@ public class Window{
     }
     
     public static void main(String[] args){
-        javax.swing.SwingUtilities.invokeLater(new Runnable(){
-            public void run(){
-                new Window().createAndShow();
-            }
-        });
     }
     
 }
