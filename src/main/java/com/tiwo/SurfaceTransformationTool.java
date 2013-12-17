@@ -81,13 +81,32 @@ public class SurfaceTransformationTool {
     }
 
     public ILineSegment transformNoDistoriton(ILineSegment line, int height, int width){
-        IPoint start = line.getStart();
-        IPoint end = line.getEnd();
         double ratio = getNonDistortingRatio(height, width);
-        double startX = (start.getX()+xOffset)*ratio;
-        double startY = (start.getY()+yOffset)*ratio;
-        double endX = (end.getX()+xOffset)*ratio;
-        double endY = (end.getY()+yOffset)*ratio;
-        return new TwoDLineSegment(startX,startY,endX,endY);
+        return transform(line,ratio);
+    }
+    
+    private ILineSegment transform(ILineSegment line, double ratio){
+        IPoint start = transform( line.getStart(), ratio);
+        IPoint end = transform( line.getEnd(), ratio);
+        return new TwoDLineSegment(start, end);       
+    }
+    
+    public IPoint transformNoDistortion(IPoint point, int height, int width){
+        double ratio = getNonDistortingRatio(height, width);
+        return transform(point, ratio);
+    }
+        
+    public IPoint transform(IPoint point, double ratio){
+        double px = transformX(point.getX(), ratio);
+        double py = transformY(point.getY(), ratio);
+        return new TwoDPoint(px,py);
+    }
+    
+    private double transformX(double x, double ratio){
+        return (x+xOffset)*ratio;        
+    }
+    
+    private double transformY(double y, double ratio){
+        return (y+yOffset)*ratio;       
     }
 }
