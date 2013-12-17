@@ -15,6 +15,8 @@ import java.util.Locale;
 import java.util.Scanner;
 import algs.model.ILineSegment;
 import algs.model.IPoint;
+import java.util.Hashtable;
+import algs.model.problems.segmentIntersection.IntersectionDetection;
 
 /**
  *
@@ -23,7 +25,6 @@ import algs.model.IPoint;
 public class Model {
     private IntersectionDetection alg;
     private ILineSegment[] segments;
-    // TODO Implement Logic here
     
     public boolean readFromFile(String path){
         File f = new File(path);
@@ -49,6 +50,14 @@ public class Model {
         }
         segs.toArray(segments);
         return true;
+    }
+    
+    public Hashtable<IPoint,ILineSegment[]> intersections(){
+        if(segments == null)
+            return null;
+        if(alg == null)
+            return null;
+        return alg.intersections(segments);
     }
         
         
