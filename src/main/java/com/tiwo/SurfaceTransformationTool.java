@@ -3,7 +3,10 @@ package com.tiwo;
 
 import java.util.Hashtable;
 import java.util.List;
-
+import algs.model.IPoint;
+import algs.model.ILineSegment;
+import algs.model.twod.TwoDPoint;
+import algs.model.twod.TwoDLineSegment;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -85,6 +88,6 @@ public class SurfaceTransformationTool {
         double startY = (start.getY()+yOffset)*ratio;
         double endX = (end.getX()+xOffset)*ratio;
         double endY = (end.getY()+yOffset)*ratio;
-        return new Segment(startX,startY,endX,endY);
+        return new TwoDLineSegment(startX,startY,endX,endY);
     }
 }

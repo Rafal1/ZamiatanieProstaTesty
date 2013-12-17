@@ -36,6 +36,8 @@ public class Window{
         frame.add(surface, c);
         frame.pack();
         frame.setVisible(true);
+        System.out.println(fileChooser.showOpenDialog(frame));
+        System.out.println(fileChooser.getSelectedFile());
     }
     
     private void initButtons(){

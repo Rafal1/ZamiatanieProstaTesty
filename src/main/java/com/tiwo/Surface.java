@@ -7,7 +7,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Hashtable;
 import javax.swing.JPanel;
-
+import algs.model.twod.TwoDPoint;
+import algs.model.twod.TwoDLineSegment;
+import algs.model.ILineSegment;
+import algs.model.IPoint;
 /**
  *
  * @author marcin
@@ -21,10 +24,10 @@ public class Surface extends JPanel {
         
         // Hardcoded data 
         // TODO delete before integrating with SweepLine
-        Point key1 = new Point(0,0);
-        Segment[] segs = {
-                new Segment(200,-1000, 500, 500),
-                new Segment(-300,-20, 100, 200),
+        TwoDPoint key1 = new TwoDPoint(0,0);
+        TwoDLineSegment[] segs = {
+                new TwoDLineSegment(200,-1000, 500, 500),
+                new TwoDLineSegment(-300,-20, 100, 200),
         };
         res.put(key1, segs);
         
@@ -57,9 +60,9 @@ public class Surface extends JPanel {
     private void drawAxises(Graphics g2d){
         int h = getHeight();
         int w = getWidth();
-        this.transformAndDrawLine(g2d, new Segment(Integer.MIN_VALUE,0,
+        this.transformAndDrawLine(g2d, new TwoDLineSegment(Integer.MIN_VALUE,0,
                 Integer.MAX_VALUE,0));
-        this.transformAndDrawLine(g2d, new Segment(0,Integer.MIN_VALUE,0,
+        this.transformAndDrawLine(g2d, new TwoDLineSegment(0,Integer.MIN_VALUE,0,
                 Integer.MAX_VALUE));
     }
     
