@@ -7,7 +7,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Hashtable;
 import javax.swing.JPanel;
-
+import algs.model.twod.TwoDPoint;
+import algs.model.twod.TwoDLineSegment;
+import algs.model.ILineSegment;
+import algs.model.IPoint;
 /**
  *
  * @author marcin
@@ -21,10 +24,10 @@ public class Surface extends JPanel {
         
         // Hardcoded data 
         // TODO delete before integrating with SweepLine
-        Point key1 = new Point(0,0);
-        Segment[] segs = {
-                new Segment(200,-1000, 500, 500),
-                new Segment(-300,-20, 100, 200),
+        TwoDPoint key1 = new TwoDPoint(0,0);
+        TwoDLineSegment[] segs = {
+                new TwoDLineSegment(200,-1000, 500, 500),
+                new TwoDLineSegment(-300,-20, 100, 200),
         };
         res.put(key1, segs);
         
@@ -33,8 +36,19 @@ public class Surface extends JPanel {
     private void drawLines(Graphics2D g2d){
         for(IPoint point : res.keySet()){
             for(ILineSegment segment : res.get(point)){
-                System.out.println("drawing :)");
                 transformAndDrawLine(g2d, segment);
+            }
+        }
+    }
+    
+    private void drawPoints(Graphics2D g2d){
+        for(IPoint point : res.keySet()){
+            g2d.setColor(Color.red);
+            transformAndDrawPoint(g2d,point);
+            g2d.setColor(Color.green);
+            for(ILineSegment segment : res.get(point)){
+                transformAndDrawPoint(g2d, segment.getStart());
+                transformAndDrawPoint(g2d, segment.getEnd());
             }
         }
     }
@@ -57,10 +71,32 @@ public class Surface extends JPanel {
     private void drawAxises(Graphics g2d){
         int h = getHeight();
         int w = getWidth();
-        this.transformAndDrawLine(g2d, new Segment(Integer.MIN_VALUE,0,
+        this.transformAndDrawLine(g2d, new TwoDLineSegment(Integer.MIN_VALUE,0,
                 Integer.MAX_VALUE,0));
-        this.transformAndDrawLine(g2d, new Segment(0,Integer.MIN_VALUE,0,
+        this.transformAndDrawLine(g2d, new TwoDLineSegment(0,Integer.MIN_VALUE,0,
                 Integer.MAX_VALUE));
+    }
+    
+    private void drawPoint(Graphics g2d, IPoint point){
+        int d = 4;
+        int h = getHeight();
+        int x = (int)point.getX() - d/2;
+        int y = h - ((int)point.getY() + d/2);
+        g2d.fillOval(x, y, d, d);
+        drawPointLabel(g2d,point);
+    }
+    
+    private void drawPointLabel(Graphics g2d, IPoint point){
+        int h = getHeight();
+        String coordinates = "("+point.getX()+","+point.getY()+")";
+        g2d.drawChars(coordinates.toCharArray(), 0, coordinates.length(),
+                (int)point.getX(), h-(int)point.getY());
+    }
+    
+    private void transformAndDrawPoint(Graphics g2d, IPoint point){
+        IPoint p = transformer.transformNoDistortion(point, 
+                getHeight(), getWidth() );
+        drawPoint(g2d, p);
     }
     
     @Override
@@ -74,6 +110,7 @@ public class Surface extends JPanel {
         this.drawAxises(g2d);
         g2d.setColor(Color.blue);
         this.drawLines(g2d);
+        this.drawPoints(g2d);
     }
     
 }

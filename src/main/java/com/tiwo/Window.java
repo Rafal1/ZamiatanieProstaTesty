@@ -1,8 +1,15 @@
 package com.tiwo;
 
+import algs.model.ILineSegment;
+import algs.model.IPoint;
+import algs.model.list.List;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Hashtable;
 import javax.swing.*;
 
 
@@ -13,6 +20,21 @@ public class Window{
     private JButton calculateButton;
     private JButton chooseFileButton;
     private Surface surface;
+    
+    public void plot(Hashtable<IPoint, ILineSegment[]> res){
+        surface.res = res;
+        surface.repaint();
+    }
+    
+    public Window(){
+
+    }
+    
+    public void setDispalyedAlgorithms(ArrayList<String> algs){
+        this.algChooser.removeAllItems();
+        for( String alg : algs)
+            algChooser.addItem(alg);
+    }
     
     public void createAndShow(){
         initButtons();
@@ -64,12 +86,25 @@ public class Window{
         this.fileChooser = new JFileChooser();
     }
     
-    public static void main(String[] args){
-        javax.swing.SwingUtilities.invokeLater(new Runnable(){
-            public void run(){
-                new Window().createAndShow();
-            }
-        });
+    public void addListener(ActionListener l){
+      this.chooseFileButton.addActionListener(l);
+      this.algChooser.addActionListener(l);
+      this.calculateButton.addActionListener(l);
+      this.fileChooser.addActionListener(l);
+    }
+    
+    public String getSelectedAlgorithm(){
+        return (String)this.algChooser.getSelectedItem();
+    }
+    
+    public void showFileChooserDialog(){
+        this.fileChooser.showOpenDialog(frame);
+    }
+    
+    public File getSelectedFile(){
+        System.out.println("Selected file " + 
+                this.fileChooser.getSelectedFile().getAbsolutePath());
+        return this.fileChooser.getSelectedFile();
     }
     
 }
