@@ -22,9 +22,21 @@ public class Controller implements ActionListener {
         view = new Window();
         view.createAndShow();
         view.setDispalyedAlgorithms(model.getAlgoritmsNames());
+        view.addListener(this);
     }
     
     public void actionPerformed(ActionEvent e){
+        System.out.println("Action Command: " + e.getActionCommand());
+        if( e.getActionCommand().equals("comboBoxChanged") )
+            model.setAlgorithm(view.getSelectedAlgorithm());
+        else if( e.getActionCommand().equals("Calculate!") )
+            view.plot( model.intersections() );
+        else if( e.getActionCommand().equals("Choose data file") )
+            view.showFileChooserDialog();
+        else if( e.getActionCommand().equals("ApproveSelection") )
+            model.readFromFile( view.getSelectedFile() );
+            
+            
     }
     
     

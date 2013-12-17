@@ -36,7 +36,6 @@ public class Surface extends JPanel {
     private void drawLines(Graphics2D g2d){
         for(IPoint point : res.keySet()){
             for(ILineSegment segment : res.get(point)){
-                System.out.println("drawing :)");
                 transformAndDrawLine(g2d, segment);
             }
         }

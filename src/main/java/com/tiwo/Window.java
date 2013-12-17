@@ -6,6 +6,8 @@ import algs.model.list.List;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import javax.swing.*;
@@ -56,8 +58,6 @@ public class Window{
         frame.add(surface, c);
         frame.pack();
         frame.setVisible(true);
-        System.out.println(fileChooser.showOpenDialog(frame));
-        System.out.println(fileChooser.getSelectedFile());
     }
     
     private void initButtons(){
@@ -84,6 +84,27 @@ public class Window{
     
     private void initFileChooser(){
         this.fileChooser = new JFileChooser();
+    }
+    
+    public void addListener(ActionListener l){
+      this.chooseFileButton.addActionListener(l);
+      this.algChooser.addActionListener(l);
+      this.calculateButton.addActionListener(l);
+      this.fileChooser.addActionListener(l);
+    }
+    
+    public String getSelectedAlgorithm(){
+        return (String)this.algChooser.getSelectedItem();
+    }
+    
+    public void showFileChooserDialog(){
+        this.fileChooser.showOpenDialog(frame);
+    }
+    
+    public File getSelectedFile(){
+        System.out.println("Selected file " + 
+                this.fileChooser.getSelectedFile().getAbsolutePath());
+        return this.fileChooser.getSelectedFile();
     }
     
 }

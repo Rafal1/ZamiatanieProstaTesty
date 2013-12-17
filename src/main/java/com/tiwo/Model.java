@@ -24,10 +24,11 @@ import algs.model.problems.segmentIntersection.IntersectionDetection;
  */
 public class Model {
     private Algorithms algs;
-    private ILineSegment[] segments;
+    private ArrayList<ILineSegment> segments;
     
     public Model(){
         algs = new Algorithms();
+        segments = new ArrayList<ILineSegment>();
     }
     
     public boolean readFromFile(String path){
@@ -36,23 +37,22 @@ public class Model {
     }
     
     public boolean readFromFile(File f){
-        ArrayList<ILineSegment> segs = new ArrayList<ILineSegment>();
         try {
-            Scanner sc = new Scanner(f).useLocale(Locale.US);
-            while (sc.hasNextDouble()) {
+            Scanner sc = new Scanner(f);//.useLocale(Locale.US);
+            while (sc.hasNext()) {
                 Double[] vals = new Double[4];
                 for (int i = 0; i < vals.length; i++) {
                     vals[i] = sc.nextDouble();
                 }
+                System.out.println("reading");
                 ILineSegment segment= new TwoDLineSegment(new TwoDPoint(vals[0], vals[1]),
                         new TwoDPoint(vals[2], vals[3]));
-                segs.add(segment);
+                segments.add(segment);
             }
         } catch (FileNotFoundException fnfe) {
             System.err.println("Unable to locate file:" + f);
             return false;
         }
-        segs.toArray(segments);
         return true;
     }
     
@@ -67,7 +67,7 @@ public class Model {
     public Hashtable<IPoint,ILineSegment[]> intersections(){
         if(segments == null)
             return null;
-        return algs.getChoosed().intersections(segments);
+        return algs.getChoosed().intersections(segments.iterator());
     }
         
         

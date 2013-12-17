@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Algorithms{
     ArrayList<IntersectionDetection> algs;
     ArrayList<String> names;
-    int selectedIndex = -1;
+    int selectedIndex = 0;
     
     public Algorithms(){
         algs = new ArrayList<IntersectionDetection>();
@@ -22,7 +22,7 @@ public class Algorithms{
         algs.add(new algs.model.problems.segmentIntersection.priorityqueue.SlowLineSweep());
         names.add("Line Sweep Priority Queue");
         algs.add(new algs.model.problems.segmentIntersection.linkedlist.LineSweep());
-        names.add("Line Sweep Liked List");
+        names.add("Line Sweep Linked List");
     }
     
     public ArrayList<String> getAlgorithmsNames(){
