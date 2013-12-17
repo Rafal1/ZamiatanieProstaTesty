@@ -23,8 +23,12 @@ import algs.model.problems.segmentIntersection.IntersectionDetection;
  * @author marcin
  */
 public class Model {
-    private IntersectionDetection alg;
+    private Algorithms algs;
     private ILineSegment[] segments;
+    
+    public Model(){
+        algs = new Algorithms();
+    }
     
     public boolean readFromFile(String path){
         File f = new File(path);
@@ -52,14 +56,19 @@ public class Model {
         return true;
     }
     
+    public String[] getAlgoritmsNames(){
+        return (String[])algs.getAlgorithmsNames();
+    }
+    
+    public void setAlgorithm(String name){
+        algs.setChoosed(name);
+    }
+    
     public Hashtable<IPoint,ILineSegment[]> intersections(){
         if(segments == null)
             return null;
-        if(alg == null)
-            return null;
-        return alg.intersections(segments);
+        return algs.getChoosed().intersections(segments);
     }
-        
         
         
 }
