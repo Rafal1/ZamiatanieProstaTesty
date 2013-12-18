@@ -118,7 +118,7 @@ public class Window{
     }
     
     public void displayExecutionTime(long t){
-        time.setText("Execution time: " + t+ "tu jednostka");
+        time.setText("Execution time: " + t+ "ms");
     }
     
 }
