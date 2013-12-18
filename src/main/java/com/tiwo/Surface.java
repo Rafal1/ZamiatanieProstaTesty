@@ -88,9 +88,11 @@ public class Surface extends JPanel {
     
     private void drawPointLabel(Graphics g2d, IPoint point){
         int h = getHeight();
+        int w = getWidth();
         String coordinates = "("+point.getX()+","+point.getY()+")";
+        IPoint transformed = transformer.transformNoDistortion(point, h, w);
         g2d.drawChars(coordinates.toCharArray(), 0, coordinates.length(),
-                (int)point.getX(), h-(int)point.getY());
+                (int)transformed.getX(), h-(int)transformed.getY());
     }
     
     private void transformAndDrawPoint(Graphics g2d, IPoint point){
