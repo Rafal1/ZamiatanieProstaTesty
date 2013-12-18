@@ -37,8 +37,9 @@ public class Debug {
         ArrayList<ILineSegment> als = new ArrayList<ILineSegment>();
 
         try {
-            Scanner sc = new Scanner(f).useLocale(Locale.US);;
-            while (sc.hasNextDouble()) {
+            Scanner sc = new Scanner(f).useLocale(Locale.US);
+            ;
+            while (sc.hasNextDouble()) { //1
                 Double[] vals = new Double[4];
                 for (int i = 0; i < vals.length; i++) {
                     vals[i] = sc.nextDouble();
