@@ -16,7 +16,6 @@ import java.util.Scanner;
 import algs.model.ILineSegment;
 import algs.model.IPoint;
 import java.util.Hashtable;
-import algs.model.problems.segmentIntersection.IntersectionDetection;
 
 /**
  *
@@ -38,7 +37,7 @@ public class Model {
     
     public boolean readFromFile(File f){
         try {
-            Scanner sc = new Scanner(f);//.useLocale(Locale.US);
+            Scanner sc = new Scanner(f).useLocale(Locale.US);
             while (sc.hasNext()) {
                 Double[] vals = new Double[4];
                 for (int i = 0; i < vals.length; i++) {
