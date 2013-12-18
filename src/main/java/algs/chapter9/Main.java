@@ -14,7 +14,7 @@ public class Main {
         // locate in resources
         String locDirect = "D:\\Pulpit\\JAVA applications\\ZamiatanieProstaTesty\\src\\main\\resources\\algs\\chapter9";
         //przepraszam, ale ta relatywna sciezka w kodzie mnie wkurza, nie moge  :(
-
+        //todo sciezka aby sie dalo u niego uruchomic
 //        String loc = "resources" + java.io.File.separatorChar +
 //                "algs\\chapter9" + java.io.File.separatorChar;
         File f = new File(locDirect, "data1.txt");
