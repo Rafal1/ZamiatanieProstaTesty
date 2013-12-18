@@ -20,6 +20,7 @@ public class Window{
     private JButton calculateButton;
     private JButton chooseFileButton;
     private Surface surface;
+    private JLabel time;
     
     public void plot(Hashtable<IPoint, ILineSegment[]> res){
         surface.res = res;
@@ -37,38 +38,44 @@ public class Window{
     }
     
     public void createAndShow(){
-        initButtons();
-        initSurface();
-        initAlgChooser();
-        initFileChooser();
+        GridBagConstraints c = new GridBagConstraints();
         initFrame();
-        GridBagConstraints c = new GridBagConstraints();        
-        c.gridx=0;
-        c.gridy=0;
-        frame.add(calculateButton, c.gridy );
-        c.gridx=1;
-        c.gridy=0;
-        frame.add(algChooser, c.gridy);
-        c.gridx=2;
-        c.gridy=0;
-        frame.add(chooseFileButton, c.gridy);
-        c.gridx=0;
-        c.gridy=1;
-        c.gridwidth=5;
-        frame.add(surface, c);
+        initButtons(c);
+        initSurface(c);
+        initAlgChooser(c);
+        initFileChooser();
+        initTimeLabel(c);
         frame.pack();
         frame.setVisible(true);
     }
     
-    private void initButtons(){
+    private void initTimeLabel(GridBagConstraints c){
+        time = new JLabel();
+        c.gridx=1;
+        c.gridy=2;
+        c.gridwidth=5;
+        frame.add(time, c);
+    }
+    
+    private void initButtons(GridBagConstraints c){       
         calculateButton = new JButton();
         calculateButton.setText("Calculate!");        
         chooseFileButton = new JButton();
-        chooseFileButton.setText("Choose data file");
+        chooseFileButton.setText("Choose data file"); 
+        c.gridx=0;
+        c.gridy=0;
+        frame.add(calculateButton, c.gridy );
+        c.gridx=2;
+        c.gridy=0;
+        frame.add(chooseFileButton, c.gridy);
     }
     
-    private void initSurface(){        
-        surface = new Surface(500,500);
+    private void initSurface(GridBagConstraints c){ 
+        surface = new Surface(500,500);       
+        c.gridx=0;
+        c.gridy=1;
+        c.gridwidth=5;
+        frame.add(surface, c);
     }
     
     private void initFrame(){        
@@ -78,8 +85,11 @@ public class Window{
         frame.setLayout(new GridBagLayout());
     }
     
-    private void initAlgChooser(){
+    private void initAlgChooser(GridBagConstraints c){
         this.algChooser = new JComboBox();
+        c.gridx=1;
+        c.gridy=0;
+        frame.add(algChooser, c.gridy);
     }
     
     private void initFileChooser(){
@@ -105,6 +115,10 @@ public class Window{
         System.out.println("Selected file " + 
                 this.fileChooser.getSelectedFile().getAbsolutePath());
         return this.fileChooser.getSelectedFile();
+    }
+    
+    public void displayExecutionTime(long t){
+        time.setText("Execution time: " + t+ "tu jednostka");
     }
     
 }

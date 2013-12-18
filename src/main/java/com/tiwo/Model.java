@@ -69,6 +69,10 @@ public class Model {
             return null;
         return algs.getChoosed().intersections(segments.iterator());
     }
+    
+    public long getLastExecutionTime(){
+        return algs.getChoosed().time();
+    }
         
         
 }

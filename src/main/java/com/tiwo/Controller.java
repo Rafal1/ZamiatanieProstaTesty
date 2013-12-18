@@ -29,8 +29,10 @@ public class Controller implements ActionListener {
         System.out.println("Action Command: " + e.getActionCommand());
         if( e.getActionCommand().equals("comboBoxChanged") )
             model.setAlgorithm(view.getSelectedAlgorithm());
-        else if( e.getActionCommand().equals("Calculate!") )
+        else if( e.getActionCommand().equals("Calculate!") ){
             view.plot( model.intersections() );
+            view.displayExecutionTime(model.getLastExecutionTime());
+        }
         else if( e.getActionCommand().equals("Choose data file") )
             view.showFileChooserDialog();
         else if( e.getActionCommand().equals("ApproveSelection") )
