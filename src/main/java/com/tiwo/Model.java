@@ -36,6 +36,7 @@ public class Model {
     }
     
     public boolean readFromFile(File f){
+        segments.clear();
         try {
             Scanner sc = new Scanner(f).useLocale(Locale.US);
             while (sc.hasNext()) {
