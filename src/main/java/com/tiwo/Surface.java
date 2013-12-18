@@ -45,10 +45,13 @@ public class Surface extends JPanel {
         for(IPoint point : res.keySet()){
             g2d.setColor(Color.red);
             transformAndDrawPoint(g2d,point);
+            drawPointLabel(g2d,point);
             g2d.setColor(Color.green);
             for(ILineSegment segment : res.get(point)){
                 transformAndDrawPoint(g2d, segment.getStart());
+                drawPointLabel(g2d,segment.getStart());
                 transformAndDrawPoint(g2d, segment.getEnd());
+                drawPointLabel(g2d,segment.getEnd());
             }
         }
     }
@@ -83,7 +86,6 @@ public class Surface extends JPanel {
         int x = (int)point.getX() - d/2;
         int y = h - ((int)point.getY() + d/2);
         g2d.fillOval(x, y, d, d);
-        drawPointLabel(g2d,point);
     }
     
     private void drawPointLabel(Graphics g2d, IPoint point){
