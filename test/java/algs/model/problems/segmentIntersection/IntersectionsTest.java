@@ -1,3 +1,5 @@
+package algs.model.problems.segmentIntersection;
+
 import org.junit.Test;
 
 import algs.model.ILineSegment;

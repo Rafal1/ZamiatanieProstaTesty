@@ -1,3 +1,5 @@
+import algs.model.problems.segmentIntersection.FigureChapter9Test;
+import algs.model.problems.segmentIntersection.IntersectionsTest;
 import algs.model.problems.segmentIntersection.LineSweepBasicTest;
 import algs.model.problems.segmentIntersection.linkedlist.LineSweepTest;
 import org.junit.runner.RunWith;

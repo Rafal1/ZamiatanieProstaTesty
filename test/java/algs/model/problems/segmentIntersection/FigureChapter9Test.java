@@ -1,3 +1,5 @@
+package algs.model.problems.segmentIntersection;
+
 import java.util.Hashtable;
 
 import org.junit.Test;
