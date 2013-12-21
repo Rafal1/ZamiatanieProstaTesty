@@ -91,7 +91,7 @@ public class LineSweep extends IntersectionDetection {
 	 * @param ep
 	 */
 	@SuppressWarnings("unchecked")
-	private void handleEventPoint (EventPoint ep) {
+        private void handleEventPoint (EventPoint ep) {
 		// Find segments, if they exist, to left (and right) of ep in line state.
 		// Intersections can only happen between neighboring segments. We start
 		// with nearest ones because as line sweeps down we will eventually find

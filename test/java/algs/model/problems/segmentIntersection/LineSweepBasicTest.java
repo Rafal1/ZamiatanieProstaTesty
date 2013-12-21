@@ -87,4 +87,24 @@ public class LineSweepBasicTest {
         assertEquals(2, res.size());
         assertTrue(res.containsKey(expPoint) && res.containsKey(expPoint1));
     }
+
+    @Test
+    public void testBlackBox6() {
+        //pionowe i poziome linie
+        ArrayList<ILineSegment> als = new ArrayList<ILineSegment>();
+
+        TwoDLineSegment line1 = new TwoDLineSegment(new TwoDPoint(-1, -1), new TwoDPoint(2, 5));
+        TwoDLineSegment line2 = new TwoDLineSegment(new TwoDPoint(0.99999, 3), new TwoDPoint(1.0001, 3));
+
+        als.add(line1);
+        als.add(line2);
+
+        Hashtable<IPoint, ILineSegment[]> res = dba.intersections(als.iterator());
+
+        //spodziewany wynik
+        IPoint expPoint = new TwoDPoint(1, 3);
+
+        assertEquals(1, res.size());
+        assertTrue(res.containsKey(expPoint));
+    }
 }
