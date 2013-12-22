@@ -18,7 +18,7 @@ import static org.junit.Assert.assertTrue;
 public class LineSweepTest {
     @Test
     //   sprawdzenie zgodnosci wyników tych samych algorytmów z różną strukturą danych
-    public void testTheSameLineSweep() {
+    public void testTheSameResultsLineSweep() {
         LineSweep alg = new LineSweep(); // LinkedList - lower performance
         algs.model.problems.segmentIntersection.LineSweep alg1 = new algs.model.problems.segmentIntersection.LineSweep();
         ArrayList<ILineSegment> lines = new ArrayList<ILineSegment>();
@@ -59,11 +59,18 @@ public class LineSweepTest {
         lines.add(line2);
         lines.add(line3);
 
-        Hashtable<IPoint, ILineSegment[]> results = alg.intersections(lines.iterator());
+        Long time1 = System.nanoTime();
         Hashtable<IPoint, ILineSegment[]> results1 = alg1.intersections(lines.iterator());
+        Long time2 = System.nanoTime();
+        Long diff21 = time2 - time1;
 
-        System.out.println("Czas wykonania alg. ze strukturą LinkedListLineState: " + alg.time() + ", czas alg. ze strukturą LineState: " + alg1.time());
-        assertTrue(alg.time() > alg1.time());
+        Long timeA = System.nanoTime();
+        Hashtable<IPoint, ILineSegment[]> results = alg.intersections(lines.iterator());
+        Long timeB = System.nanoTime();
+        Long diffBA = timeB - timeA;
+
+        System.out.println("Czas wykonania alg. ze strukturą LinkedListLineState: " + diffBA + ", czas alg. ze strukturą LineState: " + diff21);
+        //alg.time() - doesn't work
+        assertTrue(diff21 < diffBA);
     }
-
 }
