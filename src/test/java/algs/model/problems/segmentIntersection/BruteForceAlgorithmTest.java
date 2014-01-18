@@ -7,45 +7,49 @@ package algs.model.problems.segmentIntersection;
 import algs.model.ILineSegment;
 import algs.model.IPoint;
 import algs.model.twod.*;
+
 import java.util.Enumeration;
 import java.util.Hashtable;
+
 import org.junit.After;
+
 import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
 
 /**
- *
  * @author Marcin Laskowski
  */
 public class BruteForceAlgorithmTest {
 
     public BruteForceAlgorithmTest() {
     }
+
     private Enumeration numer;
     private Hashtable<IPoint, ILineSegment[]> wynik;
     private BruteForceAlgorithm BF;
     private double eps;
     private boolean pytajnik;
-    
+
     //=====================================
-    
-    private void testuj(TwoDLineSegment wejscie[], TwoDPoint punkty[]){
+
+    private void testuj(TwoDLineSegment wejscie[], TwoDPoint punkty[]) {
         boolean[] punktySpr = new boolean[punkty.length];
-        for (int i = 0; i < punkty.length; i++){
+        for (int i = 0; i < punkty.length; i++) {
             punktySpr[i] = false;
         }
-        
+
         wynik = BF.intersections(wejscie);
         numer = wynik.keys();
 
         while (numer.hasMoreElements()) {
             IPoint punkt = (IPoint) numer.nextElement();
             ILineSegment wypis[];
-            
+
             pytajnik = false;
             for (int i = 0; i < punkty.length; i++) {
-                    if (punkt.equals(punkty[i])) {
+                if (punkt.equals(punkty[i])) {
                     pytajnik = true;
                     punktySpr[i] = true;
                 }
@@ -68,22 +72,22 @@ public class BruteForceAlgorithmTest {
             double odcinek1 = Math.sqrt((x1k - x1s) * (x1k - x1s) + (y1k - y1s) * (y1k - y1s));
             double odcinek1a = Math.sqrt((x0 - x1k) * (x0 - x1k) + (y0 - y1k) * (y0 - y1k));
             double odcinek1b = Math.sqrt((x1s - x0) * (x1s - x0) + (y1s - y0) * (y1s - y0));
-            assertEquals(odcinek1, odcinek1a + odcinek1b, eps*100);
+            assertEquals(odcinek1, odcinek1a + odcinek1b, eps * 100);
 
             double odcinek2 = Math.sqrt((x2k - x2s) * (x2k - x2s) + (y2k - y2s) * (y2k - y2s));
             double odcinek2a = Math.sqrt((x0 - x2k) * (x0 - x2k) + (y0 - y2k) * (y0 - y2k));
             double odcinek2b = Math.sqrt((x2s - x0) * (x2s - x0) + (y2s - y0) * (y2s - y0));
-            assertEquals(odcinek2, odcinek2a + odcinek2b, eps*100);
+            assertEquals(odcinek2, odcinek2a + odcinek2b, eps * 100);
         }
-        
+
         for (int i = 0; i < punkty.length; i++) {
             assertEquals(punktySpr[i], true);
         }
     }
-    
+
     //======================================================
-    
-    
+
+
     @Before
     public void setUp() {
         BF = new BruteForceAlgorithm();
@@ -94,19 +98,19 @@ public class BruteForceAlgorithmTest {
     public void tearDown() {
     }
 
-    
+
     /**
      * Test of intersections method, of class BruteForceAlgorithm.
      */
-    
+
     @Test
     public void test2ProstePrzecinajaceSie() {  //przechodzi przez kazda linijke programu
-        
+
         TwoDLineSegment seg1 = new TwoDLineSegment(-2, 4, 1, -5);   //kolejne odcinki
         TwoDLineSegment seg2 = new TwoDLineSegment(-4, -2, 2, 4);
         TwoDLineSegment wejscie[] = {seg1, seg2};   //laczenie odcinkow w dane wejsciowe
         TwoDPoint punkty[] = {new TwoDPoint(-1, 1)};    //punkty w ktorych ma nastapic przeciecie
-        
+
         testuj(wejscie, punkty);
     }
 
@@ -115,10 +119,10 @@ public class BruteForceAlgorithmTest {
 
         TwoDLineSegment wejscie[] = {};
         TwoDPoint punkty[] = {};
-                
+
         testuj(wejscie, punkty);
     }
-    
+
     @Test
     public void test2OdcinkiRownolegle() {  //nie wchodzi w for'a
 
@@ -126,8 +130,8 @@ public class BruteForceAlgorithmTest {
         TwoDLineSegment seg2 = new TwoDLineSegment(-3, 3, -3, -3);
         TwoDLineSegment wejscie[] = {seg1, seg2};
         TwoDPoint punkty[] = {};
-                
+
         testuj(wejscie, punkty);
     }
-    
+
 }
