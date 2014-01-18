@@ -1,7 +1,8 @@
-package algs.model.problems.segmentIntersection.linkedlist;
+package java.algs.model.problems.segmentIntersection.linkedlist;
 
 import algs.model.ILineSegment;
 import algs.model.IPoint;
+import algs.model.problems.segmentIntersection.linkedlist.LineSweep;
 import algs.model.twod.TwoDLineSegment;
 import algs.model.twod.TwoDPoint;
 import org.junit.Test;

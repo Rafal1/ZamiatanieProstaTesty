@@ -1,16 +1,14 @@
-package algs.model.problems.segmentIntersection;
-
-import java.util.Hashtable;
-
-import org.junit.Test;
+package java.algs.model.problems.segmentIntersection;
 
 import algs.model.ILineSegment;
 import algs.model.IPoint;
 import algs.model.problems.segmentIntersection.BruteForceAlgorithm;
 import algs.model.problems.segmentIntersection.linkedlist.LineSweep;
 import algs.model.twod.TwoDLineSegment;
-
 import junit.framework.TestCase;
+import org.junit.Test;
+
+import java.util.Hashtable;
 
 
 public class FigureChapter9Test extends TestCase {
