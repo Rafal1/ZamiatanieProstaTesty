@@ -1,12 +1,12 @@
 package com.tiwo;
 
 
-import java.util.Hashtable;
-import java.util.List;
-import algs.model.IPoint;
 import algs.model.ILineSegment;
-import algs.model.twod.TwoDPoint;
+import algs.model.IPoint;
 import algs.model.twod.TwoDLineSegment;
+import algs.model.twod.TwoDPoint;
+
+import java.util.Hashtable;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -35,8 +35,8 @@ public class SurfaceTransformationTool {
     public SurfaceTransformationTool(Hashtable<IPoint, ILineSegment[]> intersections) {
         double minX = Double.MAX_VALUE;
         double minY = Double.MAX_VALUE;
-        double maxX = Double.MIN_VALUE;
-        double maxY = Double.MIN_VALUE;
+        double maxX = -minX;
+        double maxY = -minY;
         for (IPoint p : intersections.keySet()) {
             for (ILineSegment segment : intersections.get(p)) {
                 double[] extremes = this.getExtremes(segment);

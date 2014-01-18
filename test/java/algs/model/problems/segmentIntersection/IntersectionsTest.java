@@ -1,4 +1,4 @@
-package algs.model.problems.segmentIntersection;
+package java.algs.model.problems.segmentIntersection;
 
 import org.junit.Test;
 
