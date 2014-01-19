@@ -1,15 +1,16 @@
-package algs.model.problems.segmentIntersection;
+package java2.algs.model.problems.segmentIntersection;
 
 import algs.model.ILineSegment;
 import algs.model.IPoint;
 import algs.model.twod.TwoDLineSegment;
 import algs.model.twod.TwoDPoint;
 import org.junit.Test;
-import algs.model.problems.segmentIntersection.linkedlist.LineSweep;
+import algs.model.problems.segmentIntersection.LineSweep;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -28,27 +29,30 @@ public class LineSweepBasicTest {
     }
 
     @Test
-    public void testTheSamePointWhiteBox() {
+    public void testIntersectsWhiteBox() {
         ArrayList<ILineSegment> als = new ArrayList<ILineSegment>();
 
-        TwoDLineSegment line1 = new TwoDLineSegment(new TwoDPoint(1, 5), new TwoDPoint(3, 8));
-        TwoDLineSegment line2 = new TwoDLineSegment(new TwoDPoint(-4, -2), new TwoDPoint(-4, -2));
+        TwoDLineSegment line1 = new TwoDLineSegment(new TwoDPoint(0, 5), new TwoDPoint(3, 8));
+        TwoDLineSegment line2 = new TwoDLineSegment(new TwoDPoint(-1, -1), new TwoDPoint(2, 8));
         als.add(line1);
         als.add(line2);
 
         Hashtable<IPoint, ILineSegment[]> res = dba.intersections(als.iterator());
+        System.out.println();
 
-        // w res znajduje sie 1 punkt - ten powtarzający się -4,-2
-        assertTrue(res.isEmpty());
+        IPoint expPoint = new TwoDPoint(1.5, 6.5);
+        assertEquals(1, res.size());
+        assertTrue(res.containsKey(expPoint));
+
     }
 
     @Test
-    public void testTheSameStretchsWhiteBox() {
+    public void testEPNullWhiteBox() {
         //punkt wspólny
         ArrayList<ILineSegment> als = new ArrayList<ILineSegment>();
 
         TwoDLineSegment line1 = new TwoDLineSegment(new TwoDPoint(1, 5), new TwoDPoint(3, 8));
-        TwoDLineSegment line2 = new TwoDLineSegment(new TwoDPoint(1, 5), new TwoDPoint(3, 8));
+        TwoDLineSegment line2 = new TwoDLineSegment(new TwoDPoint(-4, 2), new TwoDPoint(1, 6));
 
         als.add(line1);
         als.add(line2);
@@ -56,6 +60,24 @@ public class LineSweepBasicTest {
         Hashtable<IPoint, ILineSegment[]> res = dba.intersections(als.iterator());
 
         assertTrue(res.isEmpty());
+    }
+
+    @Test
+    public void testEPNotNullWhiteBox() {
+        //punkt wspólny
+        ArrayList<ILineSegment> als = new ArrayList<ILineSegment>();
+
+        TwoDLineSegment line1 = new TwoDLineSegment(new TwoDPoint(1, 5), new TwoDPoint(3, 8));
+        TwoDLineSegment line2 = new TwoDLineSegment(new TwoDPoint(-4, 2), new TwoDPoint(1, 5));
+
+        als.add(line1);
+        als.add(line2);
+
+        Hashtable<IPoint, ILineSegment[]> res = dba.intersections(als.iterator());
+
+        IPoint expPoint = new TwoDPoint(1, 5);
+        assertEquals(1, res.size());
+        assertTrue(res.containsKey(expPoint));
     }
 
 }

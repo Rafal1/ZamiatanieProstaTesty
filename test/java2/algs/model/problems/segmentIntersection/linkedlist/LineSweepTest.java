@@ -1,4 +1,4 @@
-package java.algs.model.problems.segmentIntersection.linkedlist;
+package java2.algs.model.problems.segmentIntersection.linkedlist;
 
 import algs.model.ILineSegment;
 import algs.model.IPoint;

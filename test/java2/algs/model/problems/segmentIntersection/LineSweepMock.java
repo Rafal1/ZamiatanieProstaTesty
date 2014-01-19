@@ -1,4 +1,4 @@
-package algs.model.problems.segmentIntersection;
+package java2.algs.model.problems.segmentIntersection;
 
 import org.junit.*;
 import static org.easymock.EasyMock.*;
