@@ -12,7 +12,8 @@ import org.junit.runners.Suite;
         LineSweepBasicTest.class,
         LineSweepTest.class,
         IntersectionsTest.class,
-        FigureChapter9Test.class
+        FigureChapter9Test.class,
+        BruteForceAlgorithmTest.class
         //simply add next classes
 })
 public class TestSuite {

@@ -45,33 +45,33 @@ public class LineSweepTest {
 
     }
 
-    @Test
-    //porównanie czasu działania algorytmów z różną strukturą danych
-    public void testTimeLineSweep() {
-        LineSweep alg = new LineSweep(); // LinkedList - lower performance
-        algs.model.problems.segmentIntersection.LineSweep alg1 = new algs.model.problems.segmentIntersection.LineSweep();
-        ArrayList<ILineSegment> lines = new ArrayList<ILineSegment>();
-
-        TwoDLineSegment line1 = new TwoDLineSegment(new TwoDPoint(-3, -6), new TwoDPoint(8, 16));
-        TwoDLineSegment line2 = new TwoDLineSegment(new TwoDPoint(-3, -3), new TwoDPoint(2, 7));
-        TwoDLineSegment line3 = new TwoDLineSegment(new TwoDPoint(-4, 2), new TwoDPoint(5, -2.5));
-
-        lines.add(line1);
-        lines.add(line2);
-        lines.add(line3);
-
-        Long time1 = System.nanoTime();
-        Hashtable<IPoint, ILineSegment[]> results1 = alg1.intersections(lines.iterator());
-        Long time2 = System.nanoTime();
-        Long diff21 = time2 - time1;
-
-        Long timeA = System.nanoTime();
-        Hashtable<IPoint, ILineSegment[]> results = alg.intersections(lines.iterator());
-        Long timeB = System.nanoTime();
-        Long diffBA = timeB - timeA;
-
-        System.out.println("Czas wykonania alg. ze strukturą LinkedListLineState: " + diffBA + ", czas alg. ze strukturą LineState: " + diff21);
-        //alg.time() - doesn't work
-        assertTrue(diff21 < diffBA);
-    }
+//    @Test
+//    //porównanie czasu działania algorytmów z różną strukturą danych
+//    public void testTimeLineSweep() {
+//        LineSweep alg = new LineSweep(); // LinkedList - lower performance
+//        algs.model.problems.segmentIntersection.LineSweep alg1 = new algs.model.problems.segmentIntersection.LineSweep();
+//        ArrayList<ILineSegment> lines = new ArrayList<ILineSegment>();
+//
+//        TwoDLineSegment line1 = new TwoDLineSegment(new TwoDPoint(-3, -6), new TwoDPoint(8, 16));
+//        TwoDLineSegment line2 = new TwoDLineSegment(new TwoDPoint(-3, -3), new TwoDPoint(2, 7));
+//        TwoDLineSegment line3 = new TwoDLineSegment(new TwoDPoint(-4, 2), new TwoDPoint(5, -2.5));
+//
+//        lines.add(line1);
+//        lines.add(line2);
+//        lines.add(line3);
+//
+//        Long time1 = System.nanoTime();
+//        Hashtable<IPoint, ILineSegment[]> results1 = alg1.intersections(lines.iterator());
+//        Long time2 = System.nanoTime();
+//        Long diff21 = time2 - time1;
+//
+//        Long timeA = System.nanoTime();
+//        Hashtable<IPoint, ILineSegment[]> results = alg.intersections(lines.iterator());
+//        Long timeB = System.nanoTime();
+//        Long diffBA = timeB - timeA;
+//
+//        System.out.println("Czas wykonania alg. ze strukturą LinkedListLineState: " + diffBA + ", czas alg. ze strukturą LineState: " + diff21);
+//        //alg.time() - doesn't work
+//        assertTrue(diff21 < diffBA);
+//    }
 }

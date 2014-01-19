@@ -5,7 +5,7 @@ import algs.model.IPoint;
 import algs.model.twod.TwoDLineSegment;
 import algs.model.twod.TwoDPoint;
 import org.junit.Test;
-import algs.model.problems.segmentIntersection.LineSweep;
+import algs.model.problems.segmentIntersection.linkedlist.LineSweep;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
