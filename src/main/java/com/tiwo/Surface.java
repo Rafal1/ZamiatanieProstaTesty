@@ -21,18 +21,14 @@ public class Surface extends JPanel {
     Hashtable<IPoint, ILineSegment[]> res = new Hashtable<IPoint, ILineSegment[]>();
     Iterable<ILineSegment> segs = new ArrayList<ILineSegment>();
     SurfaceTransformationTool transformer;
+    private int margin =0;
 
     public Surface(int x, int y) {
         this.setPreferredSize(new Dimension(x, y));
-
-        // Hardcoded data 
-        // TODO delete before integrating with SweepLine
-        TwoDPoint key1 = new TwoDPoint(0, 0);
-        TwoDLineSegment[] segs = {
-            new TwoDLineSegment(200, -1000, 500, 500),
-            new TwoDLineSegment(-300, -20, 100, 200),};
-        res.put(key1, segs);
-
+    }
+    
+    public void setMargin(int m){
+        margin = m;
     }
 
     private void drawLines(Graphics2D g2d) {
@@ -106,7 +102,7 @@ private void transformAndDrawLine(Graphics g2d, ILineSegment segment){
     @Override
         protected void paintComponent(Graphics g){
         // TODO find good place to call that
-        transformer = new SurfaceTransformationTool(segs);
+        transformer = new SurfaceTransformationTool(segs, margin);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.white);
         g2d.fillRect(0, 0, getWidth(), getHeight());

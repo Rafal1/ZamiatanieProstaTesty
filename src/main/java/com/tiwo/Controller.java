@@ -2,6 +2,8 @@ package com.tiwo;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,7 +15,7 @@ import java.awt.event.ActionListener;
  *
  * @author marcin
  */
-public class Controller implements ActionListener {
+public class Controller implements ActionListener, ChangeListener {
         private Window view;
         private Model model;
         
@@ -36,9 +38,12 @@ public class Controller implements ActionListener {
         else if( e.getActionCommand().equals("Choose data file") )
             view.showFileChooserDialog();
         else if( e.getActionCommand().equals("ApproveSelection") )
-            model.readFromFile( view.getSelectedFile() );
-            
-            
+            model.readFromFile( view.getSelectedFile() );           
+    }
+
+    public void stateChanged(ChangeEvent ce) {
+        view.setMargin( view.getRequestedMargin() );
+        System.out.println("Margin change");
     }
     
     

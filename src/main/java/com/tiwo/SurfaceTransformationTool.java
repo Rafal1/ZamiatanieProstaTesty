@@ -33,7 +33,8 @@ public class SurfaceTransformationTool {
         return extremes;
     }
 
-    public SurfaceTransformationTool(Iterable<ILineSegment> segs) {
+    public SurfaceTransformationTool(Iterable<ILineSegment> segs, int margin) {
+        this.margin  = margin;
         double minX = Double.MAX_VALUE;
         double minY = Double.MAX_VALUE;
         double maxX = -minX;

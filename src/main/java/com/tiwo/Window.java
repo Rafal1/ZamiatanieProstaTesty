@@ -11,6 +11,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import javax.swing.*;
+import javax.swing.event.ChangeListener;
 
 
 public class Window{
@@ -21,6 +22,7 @@ public class Window{
     private JButton chooseFileButton;
     private Surface surface;
     private JLabel time;
+    private JSlider zoom;
     
     public void plot(Iterable<ILineSegment> segs, Hashtable<IPoint, ILineSegment[]> res){
         surface.res = res;
@@ -46,6 +48,7 @@ public class Window{
         initAlgChooser(c);
         initFileChooser();
         initTimeLabel(c);
+        initZoomSlider(c);
         frame.pack();
         frame.setVisible(true);
     }
@@ -56,6 +59,13 @@ public class Window{
         c.gridy=2;
         c.gridwidth=5;
         frame.add(time, c);
+    }
+    
+    private void initZoomSlider(GridBagConstraints c){
+        zoom = new JSlider(JSlider.HORIZONTAL, -100 , 100, 20);
+        c.gridx=10;
+        c.gridy=10;
+        frame.add(zoom);
     }
     
     private void initButtons(GridBagConstraints c){       
@@ -81,7 +91,7 @@ public class Window{
     
     private void initFrame(){        
         frame = new JFrame();
-        frame.setPreferredSize(new Dimension(600,600));
+        frame.setPreferredSize(new Dimension(700,700));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
         frame.setLayout(new GridBagLayout());
     }
@@ -102,6 +112,16 @@ public class Window{
       this.algChooser.addActionListener(l);
       this.calculateButton.addActionListener(l);
       this.fileChooser.addActionListener(l);
+      this.zoom.addChangeListener((ChangeListener)l);
+    }
+    
+    public int getRequestedMargin(){
+        return zoom.getValue();
+    }
+    
+    public void setMargin(int margin){
+        this.surface.setMargin(margin);
+        this.surface.repaint();
     }
     
     public String getSelectedAlgorithm(){
