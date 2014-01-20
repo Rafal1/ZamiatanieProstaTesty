@@ -22,6 +22,7 @@ public class SurfaceTransformationTool {
     private double y;
     private double xOffset = 0;
     private double yOffset = 0;
+    private int margin = 20;
 
     private double[] getExtremes(ILineSegment segment) {
         double maxX = Math.max(segment.getStart().getX(), segment.getEnd().getX());
@@ -61,11 +62,11 @@ public class SurfaceTransformationTool {
     }
 
     public double getXratio(int width) {
-        return ((double) width) / x;
+        return ((double) width - 2*margin) / x;
     }
 
     private double getYratio(int height) {
-        return ((double) height) / y;
+        return ((double) height - 2*margin) / y;
     }
 
     private double getNonDistortingRatio(int height, int width) {
@@ -103,10 +104,10 @@ public class SurfaceTransformationTool {
     }
     
     private double transformX(double x, double ratio){
-        return (x+xOffset)*ratio;        
+        return margin + (x+xOffset)*ratio;        
     }
     
     private double transformY(double y, double ratio){
-        return (y+yOffset)*ratio;       
+        return margin + (y+yOffset)*ratio;       
     }
 }
