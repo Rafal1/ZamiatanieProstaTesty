@@ -60,6 +60,10 @@ public class Model {
         return algs.getAlgorithmsNames();
     }
     
+    public ArrayList<ILineSegment> getSegments(){
+        return this.segments;
+    }
+    
     public void setAlgorithm(String name){
         algs.setChoosed(name);
     }

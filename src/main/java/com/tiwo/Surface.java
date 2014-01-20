@@ -1,6 +1,5 @@
 package com.tiwo;
 
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -11,52 +10,53 @@ import algs.model.twod.TwoDPoint;
 import algs.model.twod.TwoDLineSegment;
 import algs.model.ILineSegment;
 import algs.model.IPoint;
+import java.util.ArrayList;
+
 /**
  *
  * @author marcin
  */
 public class Surface extends JPanel {
+
     Hashtable<IPoint, ILineSegment[]> res = new Hashtable<IPoint, ILineSegment[]>();
+    Iterable<ILineSegment> segs = new ArrayList<ILineSegment>();
     SurfaceTransformationTool transformer;
-    
-    public Surface(int x, int y){
-        this.setPreferredSize(new Dimension(x,y));
-        
+
+    public Surface(int x, int y) {
+        this.setPreferredSize(new Dimension(x, y));
+
         // Hardcoded data 
         // TODO delete before integrating with SweepLine
-        TwoDPoint key1 = new TwoDPoint(0,0);
+        TwoDPoint key1 = new TwoDPoint(0, 0);
         TwoDLineSegment[] segs = {
-                new TwoDLineSegment(200,-1000, 500, 500),
-                new TwoDLineSegment(-300,-20, 100, 200),
-        };
+            new TwoDLineSegment(200, -1000, 500, 500),
+            new TwoDLineSegment(-300, -20, 100, 200),};
         res.put(key1, segs);
-        
+
     }
-    
-    private void drawLines(Graphics2D g2d){
-        for(IPoint point : res.keySet()){
-            for(ILineSegment segment : res.get(point)){
-                transformAndDrawLine(g2d, segment);
-            }
+
+    private void drawLines(Graphics2D g2d) {
+        for (ILineSegment segment : segs) {
+            transformAndDrawLine(g2d, segment);
         }
     }
-    
-    private void drawPoints(Graphics2D g2d){
-        for(IPoint point : res.keySet()){
+
+    private void drawPoints(Graphics2D g2d) {
+        for (IPoint point : res.keySet()) {
             g2d.setColor(Color.red);
-            transformAndDrawPoint(g2d,point);
-            drawPointLabel(g2d,point);
-            g2d.setColor(Color.green);
-            for(ILineSegment segment : res.get(point)){
-                transformAndDrawPoint(g2d, segment.getStart());
-                drawPointLabel(g2d,segment.getStart());
-                transformAndDrawPoint(g2d, segment.getEnd());
-                drawPointLabel(g2d,segment.getEnd());
-            }
+            transformAndDrawPoint(g2d, point);
+            drawPointLabel(g2d, point);
+        }
+        g2d.setColor(Color.green);
+        for (ILineSegment segment : segs) {
+            transformAndDrawPoint(g2d, segment.getStart());
+            drawPointLabel(g2d, segment.getStart());
+            transformAndDrawPoint(g2d, segment.getEnd());
+            drawPointLabel(g2d, segment.getEnd());
         }
     }
     
-    private void transformAndDrawLine(Graphics g2d, ILineSegment segment){
+private void transformAndDrawLine(Graphics g2d, ILineSegment segment){
         ILineSegment line = transformer.transformNoDistoriton(segment, 
                 getHeight(), getWidth());
         this.drawLine(g2d, line);
@@ -104,9 +104,9 @@ public class Surface extends JPanel {
     }
     
     @Override
-    protected void paintComponent(Graphics g){
+        protected void paintComponent(Graphics g){
         // TODO find good place to call that
-        transformer = new SurfaceTransformationTool(res);
+        transformer = new SurfaceTransformationTool(segs);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.white);
         g2d.fillRect(0, 0, getWidth(), getHeight());

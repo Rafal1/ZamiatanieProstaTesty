@@ -30,7 +30,7 @@ public class Controller implements ActionListener {
         if( e.getActionCommand().equals("comboBoxChanged") )
             model.setAlgorithm(view.getSelectedAlgorithm());
         else if( e.getActionCommand().equals("Calculate!") ){
-            view.plot( model.intersections() );
+            view.plot( model.getSegments(), model.intersections() );
             view.displayExecutionTime(model.getLastExecutionTime());
         }
         else if( e.getActionCommand().equals("Choose data file") )

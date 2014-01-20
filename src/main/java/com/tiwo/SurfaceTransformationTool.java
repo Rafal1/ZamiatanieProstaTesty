@@ -1,6 +1,5 @@
 package com.tiwo;
 
-
 import algs.model.ILineSegment;
 import algs.model.IPoint;
 import algs.model.twod.TwoDLineSegment;
@@ -12,6 +11,7 @@ import java.util.Hashtable;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 /**
  *
  * @author marcin
@@ -33,40 +33,38 @@ public class SurfaceTransformationTool {
         return extremes;
     }
 
-    public SurfaceTransformationTool(Hashtable<IPoint, ILineSegment[]> intersections) {
+    public SurfaceTransformationTool(Iterable<ILineSegment> segs) {
         double minX = Double.MAX_VALUE;
         double minY = Double.MAX_VALUE;
         double maxX = -minX;
         double maxY = -minY;
-        for (IPoint p : intersections.keySet()) {
-            for (ILineSegment segment : intersections.get(p)) {
-                double[] extremes = this.getExtremes(segment);
-                if (extremes[0] < minX) {
-                    minX = extremes[0];
-                }
-                if (extremes[1] < minY) {
-                    minY = extremes[1];
-                }
-                if (extremes[2] > maxX) {
-                    maxX = extremes[2];
-                }
-                if (extremes[3] > maxY) {
-                    maxY = extremes[3];
-                }
+        for (ILineSegment segment : segs) {
+            double[] extremes = this.getExtremes(segment);
+            if (extremes[0] < minX) {
+                minX = extremes[0];
+            }
+            if (extremes[1] < minY) {
+                minY = extremes[1];
+            }
+            if (extremes[2] > maxX) {
+                maxX = extremes[2];
+            }
+            if (extremes[3] > maxY) {
+                maxY = extremes[3];
             }
         }
-        xOffset = - minX;
-        yOffset = - minY;
+        xOffset = -minX;
+        yOffset = -minY;
         x = maxX - minX;
         y = maxY - minY;
     }
 
     public double getXratio(int width) {
-        return ((double) width - 2*margin) / x;
+        return ((double) width - 2 * margin) / x;
     }
 
     private double getYratio(int height) {
-        return ((double) height - 2*margin) / y;
+        return ((double) height - 2 * margin) / y;
     }
 
     private double getNonDistortingRatio(int height, int width) {
@@ -81,33 +79,33 @@ public class SurfaceTransformationTool {
         return yOffset;
     }
 
-    public ILineSegment transformNoDistoriton(ILineSegment line, int height, int width){
+    public ILineSegment transformNoDistoriton(ILineSegment line, int height, int width) {
         double ratio = getNonDistortingRatio(height, width);
-        return transform(line,ratio);
+        return transform(line, ratio);
     }
-    
-    private ILineSegment transform(ILineSegment line, double ratio){
-        IPoint start = transform( line.getStart(), ratio);
-        IPoint end = transform( line.getEnd(), ratio);
-        return new TwoDLineSegment(start, end);       
+
+    private ILineSegment transform(ILineSegment line, double ratio) {
+        IPoint start = transform(line.getStart(), ratio);
+        IPoint end = transform(line.getEnd(), ratio);
+        return new TwoDLineSegment(start, end);
     }
-    
-    public IPoint transformNoDistortion(IPoint point, int height, int width){
+
+    public IPoint transformNoDistortion(IPoint point, int height, int width) {
         double ratio = getNonDistortingRatio(height, width);
         return transform(point, ratio);
     }
-        
-    public IPoint transform(IPoint point, double ratio){
+
+    public IPoint transform(IPoint point, double ratio) {
         double px = transformX(point.getX(), ratio);
         double py = transformY(point.getY(), ratio);
-        return new TwoDPoint(px,py);
+        return new TwoDPoint(px, py);
     }
-    
-    private double transformX(double x, double ratio){
-        return margin + (x+xOffset)*ratio;        
+
+    private double transformX(double x, double ratio) {
+        return margin + (x + xOffset) * ratio;
     }
-    
-    private double transformY(double y, double ratio){
-        return margin + (y+yOffset)*ratio;       
+
+    private double transformY(double y, double ratio) {
+        return margin + (y + yOffset) * ratio;
     }
 }

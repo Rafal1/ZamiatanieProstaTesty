@@ -22,8 +22,9 @@ public class Window{
     private Surface surface;
     private JLabel time;
     
-    public void plot(Hashtable<IPoint, ILineSegment[]> res){
+    public void plot(Iterable<ILineSegment> segs, Hashtable<IPoint, ILineSegment[]> res){
         surface.res = res;
+        surface.segs = segs;
         surface.repaint();
     }
     
