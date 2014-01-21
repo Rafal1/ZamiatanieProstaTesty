@@ -19,8 +19,6 @@ public class Algorithms{
         names.add("Line Sweep");
         algs.add(new algs.model.problems.segmentIntersection.BruteForceAlgorithm());
         names.add("Brute Force");
-        algs.add(new algs.model.problems.segmentIntersection.priorityqueue.SlowLineSweep());
-        names.add("Line Sweep Priority Queue");
         algs.add(new algs.model.problems.segmentIntersection.linkedlist.LineSweep());
         names.add("Line Sweep Linked List");
     }
