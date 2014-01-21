@@ -62,7 +62,7 @@ public class Window{
     }
     
     private void initZoomSlider(GridBagConstraints c){
-        zoom = new JSlider(JSlider.HORIZONTAL, -100 , 100, 20);
+        zoom = new JSlider(JSlider.HORIZONTAL, -500 , 200, 40);
         c.gridx=10;
         c.gridy=10;
         frame.add(zoom);
