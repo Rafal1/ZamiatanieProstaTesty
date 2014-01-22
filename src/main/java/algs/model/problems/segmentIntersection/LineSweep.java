@@ -1,10 +1,10 @@
 package algs.model.problems.segmentIntersection;
 
-import java.util.Hashtable;
-
 import algs.model.ILineSegment;
 import algs.model.IPoint;
 import algs.model.list.List;
+
+import java.util.Hashtable;
 
 /**
  * Contains LineSweep algs to detect all intersections among an array of
@@ -200,4 +200,5 @@ public class LineSweep extends IntersectionDetection {
             }
         }
     }
+
 }
