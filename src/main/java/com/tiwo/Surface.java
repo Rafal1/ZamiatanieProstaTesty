@@ -21,7 +21,7 @@ public class Surface extends JPanel {
     Hashtable<IPoint, ILineSegment[]> res = new Hashtable<IPoint, ILineSegment[]>();
     Iterable<ILineSegment> segs = new ArrayList<ILineSegment>();
     SurfaceTransformationTool transformer;
-    private int margin =0;
+    private int margin =20;
 
     public Surface(int x, int y) {
         this.setPreferredSize(new Dimension(x, y));
